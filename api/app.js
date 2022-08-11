@@ -10,6 +10,8 @@ const morgan = require('morgan');
 // variable to enable global error logging
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
 
+
+
 //mycode
 //
 const routes = require('./routes');
@@ -34,8 +36,12 @@ console.log('Testing the connection to the database...');
   }
 })();
 
+
 // create the Express app
 const app = express();
+
+app.use(cors());
+
 
 // setup morgan which gives us http request logging
 app.use(morgan('dev'));
@@ -44,7 +50,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use('/api', routes);
 
-app.use(cors());
+
 
 // setup a friendly greeting for the root route
 app.get('/', (req, res) => {
