@@ -1,5 +1,13 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import {
+  BrowserRouter,
+  Switch,
+  Route
+} from 'react-router-dom'; 
+
+import Courses from './components/Courses';
 
 function App() {
   // return (
@@ -22,11 +30,19 @@ function App() {
   // );
 
   // return (
-    fetch('http://localhost:5000/api/courses')
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
+    // fetch('http://localhost:5000/api/courses')
+    //   .then(res => res.json())
+    //   .then(data => console.log(data))
+    //   .catch(err => console.log(err))
   // )
+
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Courses} />
+        </Switch>
+      </BrowserRouter>
+    );
 }
 
 export default App;
