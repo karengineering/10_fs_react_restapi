@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import './global.css';
 import React from 'react';
 import {
   BrowserRouter,
@@ -8,6 +9,7 @@ import {
 } from 'react-router-dom'; 
 
 import Courses from './components/Courses';
+import CourseDetail from './components/CourseDetail';
 
 function App() {
   // return (
@@ -40,6 +42,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Courses} />
+          <Route path="/courses/:id" component={CourseDetail} />
         </Switch>
       </BrowserRouter>
     );
