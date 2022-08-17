@@ -52,18 +52,18 @@ export default class Data {
         }
     }
 
-    // async getCourse(emailAddress, password) {
-    //     const response = await this.api(`/users`, 'GET', null, true, { emailAddress, password });
-    //     if (response.status === 200) {
-    //       return response.json().then(data => data);
-    //     }
-    //     else if (response.status === 401) {
-    //       return null;
-    //     }
-    //     else {
-    //       throw new Error();
-    //     }
-    //   }
+    async delCourse(id, emailAddress, password) {
+        const response = await this.api(`/courses/${id}`, 'DELETE', null, true, { emailAddress, password });
+        if (response.status === 204) {
+          console.log(`Course deleted`);
+        }
+        else if (response.status === 401) {
+          return null;
+        }
+        else {
+          throw new Error();
+        }
+      }
 
 
 

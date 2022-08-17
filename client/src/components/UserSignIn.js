@@ -21,7 +21,7 @@ export default class UserSignIn extends Component {
                 <div className="form--centered">
                     <h2>Sign In</h2>
                     
-                    <Form>
+                    <Form
                         cancel={this.cancel}
                         errors={errors}
                         submit={this.submit}
@@ -45,13 +45,7 @@ export default class UserSignIn extends Component {
                                     onChange={this.change} 
                                     placeholder="Password" />    
                             </React.Fragment>
-                        )}
-                        {/* <label for="emailAddress">Email Address</label> */}
-                        {/* <input id="emailAddress" name="emailAddress" type="email" value=""> */}
-                        {/* <label for="password">Password</label> */}
-                        {/* <input id="password" name="password" type="password" value=""> */}
-                        {/* <button className="button" type="submit">Sign In</button><button className="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button> */}
-                    </Form>
+                        )} />
                     <p>Don't have a user account? Click here to <Link to="/signup">sign up</Link>!</p>  
                 </div>
             </main>
@@ -82,7 +76,7 @@ submit = () => {
           });
         } else {
           this.props.history.push(from);
-          console.log(`${emailAddress} is signed in`);
+          console.log(`${emailAddress} successfully signed in`);
         }
       })
       .catch((error) => {

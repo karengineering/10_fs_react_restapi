@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useParams, useHistory } from 'react-router-dom';
+import Context from '../Context';
 import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
 
@@ -10,6 +11,8 @@ import axios from 'axios';
 >also renders an "Update Course" button for navigating to the "Update Course" screen
 */
 export default function CourseDetail() {
+    let history = useHistory();
+    let context = useContext(Context);
     const { id } = useParams();
     const [ course, setCourse ] = useState({
         id: "",
@@ -23,48 +26,54 @@ export default function CourseDetail() {
             lastName: ""
         },
     }); 
-    
+    const authUser = context.authenticatedUser;
+    // console.log(authUser);
     useEffect(() => {
-        console.log('useEffect called');
+        console.log('Course Detail useEffect called');
         axios.get(`http://localhost:5000/api/courses/${id}`)
-            .then(({data: course}) => {
-                console.log(course);
-                setCourse(course);
+            .then(course => {
+                // console.log(courses)
+                setCourse(course.data)
             })
             .catch(err => {
                 console.log('Error fetching and parsing data', err);
             });
     }, [id]);
 
+    function delCourse() {
+        let emailAddress = authUser.emailAddress;
+        let password = authUser.password;
+
+        context.data.delCourse(id, emailAddress, password)
+            .then( errors => {
+                if(errors) {
+                console.log(`${errors}`);
+                } else {
+                    console.log('course deleted');
+                    history.push('/');    
+                }
+            })
+            .catch((err) => {
+              console.log(err);
+              this.props.history.push('/error');
+            });
+    }
+
     // console.log(course.user.firstName);
-
-    //     console.log('a')
-    // }, []);
-
-    //send a DELETE request to the REST API's /api/courses/:id route in order to delete a course
-    // function deleteCourse() {
-    //     axios.get(`http://localhost:5000/api/courses/${id}`)
-    //         .then(({data: course}) => {
-    //             console.log(course);
-    //             setCourse(course);
-    //         })
-    //         .catch(err => {
-    //             console.log('Error fetching and parsing data', err);
-    //         });
-    // }, [id]);
-    // }
-
 
     //course-detail.html
     return (
         <main>
             <div className="actions--bar">
                 <div className="wrap">
+                (authUser && authUser.id === course.user.id) ?
                     <React.Fragment>
                         <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
-                        <Link className="button" to="/">Delete Course</Link>
+                        <Link className="button" to="/" onClick={(delCourse)}>Delete Course</Link>
                         <Link className="button button-secondary" to="/">Return to List</Link>
                     </React.Fragment>
+                    :
+                    <Link className="button button-secondary" to="/">Return to List</Link>
                 </div>
             </div>
 
