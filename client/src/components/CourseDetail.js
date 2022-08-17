@@ -33,7 +33,7 @@ export default function CourseDetail() {
     const authUser = context.authenticatedUser;
     // console.log(authUser);
     useEffect(() => {
-        console.log('Course Detail useEffect called');
+        console.log('CourseDetail useEffect called');
         axios.get(`http://localhost:5000/api/courses/${id}`)
             .then(course => {
                 // console.log(courses)
@@ -70,8 +70,6 @@ export default function CourseDetail() {
         <main>
             <div className="actions--bar">
                 <div className="wrap">
-                                {/* { (1 > 0) */}
-
                 {(authUser && authUser.id === course.user.id) 
                                     ?
                     (<React.Fragment>

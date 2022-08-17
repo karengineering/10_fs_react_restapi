@@ -65,7 +65,8 @@ export default function CreateCourse() {
         context.data.createCourse(course, emailAddress, password)
         .then( errors => {
           if (errors.length) {
-            this.setState({ errors });
+            // this.setState({ errors });
+            setErrors({ errors });
           } else {
                 console.log('Course created');
                 history.push('/');    
@@ -73,7 +74,7 @@ export default function CreateCourse() {
           })
         .catch((err) => {
           console.log(err);
-          this.props.history.push('/error');
+          history.push('/error');
         });
     
     }
@@ -95,7 +96,7 @@ export default function CreateCourse() {
                                     <input id="title" name="title" type="text" value={title} onChange={change} />
                                     <p>By {authUser.firstName} {authUser.lastName}</p>
                                     
-                                    <label for="description">Course Description</label>
+                                    <label htmlFor="description">Course Description</label>
                                     <textarea id="description" name="description" value={description} onChange={change}></textarea>
                                 </div>
 
@@ -107,11 +108,11 @@ export default function CreateCourse() {
                                     <textarea id="materialsNeeded" name="materialsNeeded" value={materialsNeeded} onChange={change}></textarea>
                                 </div>
                             </div>
-                </React.Fragment>
-                )}
-            />
-        </div>
-    </main>
+                    </React.Fragment>
+                    )}
+                />
+            </div>
+        </main>
     );
 
 }
