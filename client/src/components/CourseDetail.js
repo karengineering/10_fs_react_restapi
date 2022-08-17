@@ -30,7 +30,7 @@ export default function CourseDetail() {
             lastName: ""
         },
     }); 
-    const authUser = Context.authenticatedUser;
+    const authUser = context.authenticatedUser;
     // console.log(authUser);
     useEffect(() => {
         console.log('Course Detail useEffect called');
@@ -48,18 +48,18 @@ export default function CourseDetail() {
         let emailAddress = authUser.emailAddress;
         let password = authUser.password;
 
-        context.data.delCourse(id, emailAddress, password)
+        context.data.deleteCourse(id, emailAddress, password)
             .then( errors => {
                 if(errors) {
-                console.log(`course not del: ${errors}`);
+                    console.log(`Course not deleted: ${errors}`);
                 } else {
-                    console.log('course deleted');
+                    console.log('Course deleted');
                     history.push('/');    
                 }
             })
             .catch((err) => {
               console.log(err);
-              this.props.history.push('/error');
+              history.push('/error');
             });
     }
 
@@ -70,8 +70,10 @@ export default function CourseDetail() {
         <main>
             <div className="actions--bar">
                 <div className="wrap">
+                                {/* { (1 > 0) */}
+
                 {(authUser && authUser.id === course.user.id) 
-                    ?
+                                    ?
                     (<React.Fragment>
                         <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
                         <Link className="button" to="/" onClick={(delCourse)}>Delete Course</Link>
