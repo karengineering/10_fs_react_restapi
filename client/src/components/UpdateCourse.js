@@ -7,7 +7,7 @@ import axios from 'axios';
 
 export default function UpdateCourse() {
     let history = useHistory();
-    let context = useContext(Context);
+    let context = useContext(context);
     const { id } = useParams();
     // const [ course, setCourse ] = useState(
     //     {
