@@ -18,7 +18,7 @@ export default class Data {
     
       if (requiresAuth) {    
         // const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
-        const encodedCredentials = Buffer.from(`${credentials.emailAddress}:${credentials.password}`);
+        const encodedCredentials = Buffer.from(`${credentials.emailAddress}:${credentials.password}`).toString("base64");
         options.headers['Authorization'] = `Basic ${encodedCredentials}`;
       }
       return fetch(url, options);
@@ -51,7 +51,34 @@ export default class Data {
             throw new Error();
         }
     }
-
+    async createCourse(course, emailAddress, password) {
+        const response = await this.api(`/courses`, 'POST', course, true, { emailAddress, password });
+        if (response.status === 201) {
+            console.log(`Course created`);
+        }
+        else if (response.status === 400) {
+          return response.json().then(data => {
+            return data.errors;
+          });
+        }
+        else {
+          throw new Error();
+        }
+    }
+    // async updateCourse(course) {
+    //     const response = await this.api(`/courses/${id}`, 'PUT', course, true, { emailAddress, password });
+    //     if (response.status === 204) {
+    //         console.log(`Course updated`);
+    //     }
+    //     else if (response.status === 400) {
+    //       return response.json().then(data => {
+    //         return data.errors;
+    //       });
+    //     }
+    //     else {
+    //       throw new Error();
+    //     }
+    // }
     async delCourse(id, emailAddress, password) {
         const response = await this.api(`/courses/${id}`, 'DELETE', null, true, { emailAddress, password });
         if (response.status === 204) {
@@ -66,20 +93,5 @@ export default class Data {
       }
 
 
-
-    //   async createCourse(course) {
-    //     const response = await this.api('/users', 'POST', course);
-    //     if (response.status === 201) {
-    //       return [];
-    //     }
-    //     else if (response.status === 400) {
-    //       return response.json().then(data => {
-    //         return data.errors;
-    //       });
-    //     }
-    //     else {
-    //       throw new Error();
-    //     }
-    //   }
 }
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import Context from '../Context';
+// import Context from '../Context';
+import { Context } from '../Context';
+// import Form from './Form';
 import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
 
@@ -13,8 +15,10 @@ import axios from 'axios';
 export default function CourseDetail() {
     let history = useHistory();
     let context = useContext(Context);
+    // console.log(context);
     const { id } = useParams();
-    const [ course, setCourse ] = useState({
+    const [ course, setCourse ] = useState(
+        {
         id: "",
         title: "",
         description: "",
@@ -26,7 +30,7 @@ export default function CourseDetail() {
             lastName: ""
         },
     }); 
-    const authUser = context.authenticatedUser;
+    const authUser = Context.authenticatedUser;
     // console.log(authUser);
     useEffect(() => {
         console.log('Course Detail useEffect called');
@@ -47,7 +51,7 @@ export default function CourseDetail() {
         context.data.delCourse(id, emailAddress, password)
             .then( errors => {
                 if(errors) {
-                console.log(`${errors}`);
+                console.log(`course not del: ${errors}`);
                 } else {
                     console.log('course deleted');
                     history.push('/');    
@@ -66,14 +70,16 @@ export default function CourseDetail() {
         <main>
             <div className="actions--bar">
                 <div className="wrap">
-                (authUser && authUser.id === course.user.id) ?
-                    <React.Fragment>
+                {(authUser && authUser.id === course.user.id) 
+                    ?
+                    (<React.Fragment>
                         <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
                         <Link className="button" to="/" onClick={(delCourse)}>Delete Course</Link>
                         <Link className="button button-secondary" to="/">Return to List</Link>
                     </React.Fragment>
-                    :
+                    ):
                     <Link className="button button-secondary" to="/">Return to List</Link>
+                }
                 </div>
             </div>
 
