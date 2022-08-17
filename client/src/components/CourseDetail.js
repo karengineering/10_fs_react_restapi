@@ -11,7 +11,18 @@ import axios from 'axios';
 */
 export default function CourseDetail() {
     const { id } = useParams();
-    const [ course, setCourse ] = useState([]); 
+    const [ course, setCourse ] = useState({
+        id: "",
+        title: "",
+        description: "",
+        estimatedTime: "",
+        materialsNeeded: "",
+        user: {
+            id: "",
+            firstName: "",
+            lastName: ""
+        },
+    }); 
     
     useEffect(() => {
         console.log('useEffect called');
@@ -30,6 +41,19 @@ export default function CourseDetail() {
     //     console.log('a')
     // }, []);
 
+    //send a DELETE request to the REST API's /api/courses/:id route in order to delete a course
+    // function deleteCourse() {
+    //     axios.get(`http://localhost:5000/api/courses/${id}`)
+    //         .then(({data: course}) => {
+    //             console.log(course);
+    //             setCourse(course);
+    //         })
+    //         .catch(err => {
+    //             console.log('Error fetching and parsing data', err);
+    //         });
+    // }, [id]);
+    // }
+
 
     //course-detail.html
     return (
@@ -38,7 +62,7 @@ export default function CourseDetail() {
                 <div className="wrap">
                     <React.Fragment>
                         <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
-                        <Link className="button" to="#">Delete Course</Link>
+                        <Link className="button" to="/">Delete Course</Link>
                         <Link className="button button-secondary" to="/">Return to List</Link>
                     </React.Fragment>
                 </div>

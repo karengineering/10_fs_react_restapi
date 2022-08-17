@@ -18,7 +18,7 @@ export default function Courses() {
         axios.get('http://localhost:5000/api/courses')
             // .then(res => res.json())
             .then(courses => {
-                console.log(courses)
+                // console.log(courses)
                 setCourses(courses.data)
             })
             // .then(courses => {setCourses(courses.data)})
