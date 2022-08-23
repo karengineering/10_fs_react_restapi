@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { Context } from '../Context';
 import Form from './Form';
 import axios from 'axios';
@@ -22,7 +22,7 @@ export default function UpdateCourse() {
     const authUser = context.authenticatedUser;
 
     useEffect(() => {
-        console.log('UpdateCourse useEffect called');
+        // console.log('UpdateCourse useEffect called');
         axios.get(`http://localhost:5000/api/courses/${id}`)
             .then(course => {
                 setTitle(course.data.title);
@@ -36,6 +36,8 @@ export default function UpdateCourse() {
             });
     }, [id, history]);
 
+    //displays validation errors if missing title and/or description
+    //mimics update-course.html
     return (
         <main>
         <div className="wrap">
@@ -70,7 +72,7 @@ export default function UpdateCourse() {
         </div>
     </main>
     );
-
+        //go back to home pg                
         function cancel() {
             history.push('/');
         }

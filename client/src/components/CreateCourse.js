@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useContext} from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import React, {useState, useContext} from 'react';
+import { useHistory } from 'react-router-dom';
 import { Context } from '../Context';
 import Form from './Form';
 
@@ -14,16 +14,18 @@ export default function CreateCourse() {
     const context = useContext(Context);
     const authUser = context.authenticatedUser;
 
+    //store data from API in 1st var, use 2nd var to update the data's state
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [estimatedTime, setEstimatedTime] = useState('');
     const [materialsNeeded, setMaterialsNeeded] = useState('');
     const [errors, setErrors] = useState([]);
 
+    //go back to home pg
     function cancel() {
         history.push('/');
     }
-
+    
     function change(event) {
         const name = event.target.name;
         const value = event.target.value;
@@ -67,11 +69,10 @@ export default function CreateCourse() {
           console.log(err);
           history.push('/error');
         });
-    
-   
-
     }
     
+    //displays validation errors if missing title and/or description
+    //mimics create-course.html
     return (
         <main>
             <div className="wrap">

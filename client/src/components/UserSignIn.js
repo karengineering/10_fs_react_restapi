@@ -65,6 +65,7 @@ change = (event) => {
 
 submit = () => {
     const { context } = this.props;
+    //redirect user to last pg they were on before signing in 
     const { from } = this.props.location.state || { from: { pathname: '/' } };
     const { emailAddress, password } = this.state;
 
@@ -79,6 +80,7 @@ submit = () => {
           console.log(`${emailAddress} successfully signed in`);
         }
       })
+      //if theres any signin errors, render userfriendly pg
       .catch((error) => {
         console.error(error);
         this.props.history.push('/error');

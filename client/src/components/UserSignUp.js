@@ -2,7 +2,18 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
 
+/*
+Stateful component
+
+-renders a form that allows a user to sign up by creating a new account
+-also renders a "Sign Up" button that when clicked sends a POST request to the REST API's /api/users route and signs in the user
+-also renders a "Cancel" button that returns the user to the default route (i.e. the list of courses)
+*/
 export default class UserSignUp extends Component {
+
+    //new user signs up w/ full name, email, and password
+    //validation is added and displayed to make sure no info is missing
+
     state = {
       firstName: '',
       lastName: '',
@@ -120,6 +131,7 @@ change = (event) => {
 
 }
 
+// returns the user to the default route
 cancel = () => {
  this.props.history.push('/');
 }

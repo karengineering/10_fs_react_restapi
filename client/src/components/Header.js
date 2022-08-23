@@ -12,6 +12,7 @@ export default class Header extends React.PureComponent {
         const {context} = this.props;
         const authUser  = context.authenticatedUser;
 
+        //if a user is signed in, welcome them
         return (
             <header>
                 <div className="wrap header--flex">
