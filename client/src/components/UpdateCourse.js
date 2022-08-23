@@ -31,18 +31,16 @@ export default function UpdateCourse() {
 
     useEffect(() => {
         console.log('UpdateCourse useEffect called');
-        axios.get('http://localhost:5000/api/courses/${id}')
+        // axios.get('http://localhost:5000/api/courses/${id}')
+        axios.get(`http://localhost:5000/api/courses/${id}`)
             .then(course => {
-                console.log(course);
                 setTitle(course.title);
                 setDescription(course.description);
                 setEstimatedTime(course.estimatedTime);
                 setMaterialsNeeded(course.materialsNeeded);
-                // console.log(courses)
+                console.log(course.data);
                 // setCourses(courses.data)
             })
-            // .then(courses => {setCourses(courses.data)})
-            // .then(courses => console.log(courses))
             .catch(err => {
                 console.log('Error fetching and parsing data', err);
             });
@@ -50,7 +48,7 @@ export default function UpdateCourse() {
 
     return (
         <main>
-        <div class="wrap">
+        <div className="wrap">
             <h2>Update Course</h2>
             <Form 
                     cancel={cancel}
