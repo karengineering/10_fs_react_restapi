@@ -31,13 +31,12 @@ export default function UpdateCourse() {
 
     useEffect(() => {
         console.log('UpdateCourse useEffect called');
-        // axios.get('http://localhost:5000/api/courses/${id}')
         axios.get(`http://localhost:5000/api/courses/${id}`)
             .then(course => {
-                setTitle(course.title);
-                setDescription(course.description);
-                setEstimatedTime(course.estimatedTime);
-                setMaterialsNeeded(course.materialsNeeded);
+                setTitle(course.data.title);
+                setDescription(course.data.description);
+                setEstimatedTime(course.data.estimatedTime);
+                setMaterialsNeeded(course.data.materialsNeeded);
                 console.log(course.data);
                 // setCourses(courses.data)
             })
