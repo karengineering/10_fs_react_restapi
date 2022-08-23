@@ -33,6 +33,7 @@ export default function UpdateCourse() {
         console.log('UpdateCourse useEffect called');
         axios.get('http://localhost:5000/api/courses/${id}')
             .then(course => {
+                console.log(course);
                 setTitle(course.title);
                 setDescription(course.description);
                 setEstimatedTime(course.estimatedTime);
@@ -121,10 +122,11 @@ export default function UpdateCourse() {
         
             context.data.updateCourse(id, course, emailAddress, password)
             .then( errors => {
-                if (errors.length) {
-                this.setState({ errors });
+                // if (errors.length) {
+                if (errors) {
+                    setErrors(errors);
                 } else {
-                    console.log('Course created');
+                    console.log('Course updated');
                     history.push('/');    
                 }
                 })
