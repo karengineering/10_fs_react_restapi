@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-// import Context from '../Context';
 import { Context } from '../Context';
 import Form from './Form';
 import axios from 'axios';
@@ -14,19 +13,7 @@ export default function UpdateCourse() {
     let history = useHistory();
     let context = useContext(Context);
     const { id } = useParams();
-    // const [ course, setCourse ] = useState(
-    //     {
-    //     id: "",
-    //     title: "",
-    //     description: "",
-    //     estimatedTime: "",
-    //     materialsNeeded: "",
-    //     user: {
-    //         id: "",
-    //         firstName: "",
-    //         lastName: ""
-    //     },
-    // }); 
+
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [estimatedTime, setEstimatedTime] = useState('');
@@ -42,8 +29,7 @@ export default function UpdateCourse() {
                 setDescription(course.data.description);
                 setEstimatedTime(course.data.estimatedTime);
                 setMaterialsNeeded(course.data.materialsNeeded);
-                console.log(course.data);
-                // setCourses(courses.data)
+                // console.log(course.data);
             })
             .catch(err => {
                 console.log('Error fetching and parsing data', err);
@@ -85,12 +71,10 @@ export default function UpdateCourse() {
     </main>
     );
 
-    // cancel = () => {
         function cancel() {
             history.push('/');
         }
     
-        // change = (event) => {
         function change(event) {
             const name = event.target.name;
             const value = event.target.value;
@@ -108,7 +92,6 @@ export default function UpdateCourse() {
             }
             }
             
-        // submit = () => {
         function submit() {
             const userId = authUser.id;
             const emailAddress = authUser.emailAddress;

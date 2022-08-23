@@ -14,22 +14,14 @@ export default function Courses() {
 
     useEffect(() => {
         console.log('useEffect called');
-        // fetch('http://localhost:5000/api/courses')
         axios.get('http://localhost:5000/api/courses')
-            // .then(res => res.json())
             .then(courses => {
-                // console.log(courses)
                 setCourses(courses.data)
             })
-            // .then(courses => {setCourses(courses.data)})
-            // .then(courses => console.log(courses))
             .catch(err => {
                 console.log('Error fetching and parsing data', err);
             });
     }, []);
-
-// console.log('hi');
-// console.log(courses);
 
     //index.html
     //course detail, create courses

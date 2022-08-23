@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-// import Context from '../Context';
 import { Context } from '../Context';
 import Form from './Form';
 
@@ -9,21 +8,11 @@ This component provides the "Create Course" screen by rendering a form that allo
 The component also renders a "Create Course" button that when clicked sends a POST request to the REST API's /api/courses route. 
 This component also renders a "Cancel" button that returns the user to the default route (i.e. the list of courses).
 */
-
 export default function CreateCourse() {
 
     let history = useHistory();
     const context = useContext(Context);
     const authUser = context.authenticatedUser;
-
-    // const [ course, updateCourse ] = useState({
-    //     title: "",
-    //     description: "",
-    //     estimatedTime: "",
-    //     materialsNeeded: "",
-    // }); 
-
-    // console.log(authUser);
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -31,12 +20,10 @@ export default function CreateCourse() {
     const [materialsNeeded, setMaterialsNeeded] = useState('');
     const [errors, setErrors] = useState([]);
 
-    // cancel = () => {
     function cancel() {
         history.push('/');
     }
 
-    // change = (event) => {
     function change(event) {
         const name = event.target.name;
         const value = event.target.value;
@@ -54,7 +41,6 @@ export default function CreateCourse() {
         }
       }
     
-    // submit = () => {
     function submit() {
         const userId = authUser.id;
         const emailAddress = authUser.emailAddress;
@@ -70,7 +56,6 @@ export default function CreateCourse() {
     
         context.data.createCourse(course, emailAddress, password)
         .then( errors => {
-        //   if (errors.length) {
           if (errors) {
             setErrors(errors);
         } else {
