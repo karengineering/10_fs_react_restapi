@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-// import Context from '../Context';
 import { Context } from '../Context';
-// import Form from './Form';
 import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
 
@@ -15,7 +13,6 @@ import axios from 'axios';
 export default function CourseDetail() {
     let history = useHistory();
     let context = useContext(Context);
-    // console.log(context);
     const { id } = useParams();
     const [ course, setCourse ] = useState(
         {
@@ -31,7 +28,6 @@ export default function CourseDetail() {
         },
     }); 
     const authUser = context.authenticatedUser;
-    // console.log(authUser);
     useEffect(() => {
         // console.log('CourseDetail useEffect called');
         axios.get(`http://localhost:5000/api/courses/${id}`)
@@ -62,12 +58,6 @@ export default function CourseDetail() {
               history.push('/error');
             });
     }
-
-    // console.log(course.user.firstName);
-// console.log(authUser);
-// console.log(authUser.id);
-// console.log(course.user);
-
 
     //course-detail.html
     return (
