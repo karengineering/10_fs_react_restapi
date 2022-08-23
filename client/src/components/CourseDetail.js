@@ -33,7 +33,7 @@ export default function CourseDetail() {
     const authUser = context.authenticatedUser;
     // console.log(authUser);
     useEffect(() => {
-        console.log('CourseDetail useEffect called');
+        // console.log('CourseDetail useEffect called');
         axios.get(`http://localhost:5000/api/courses/${id}`)
             .then(course => {
                 // console.log(courses)
