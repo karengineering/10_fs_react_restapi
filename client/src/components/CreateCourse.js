@@ -63,15 +63,10 @@ export default function CreateCourse() {
         };
     
         context.data.createCourse(course, emailAddress, password)
-        // .then( errors => {
+        .then( errors => {
         //   if (errors.length) {
-            // this.setState({ errors });
-            // setErrors({ errors });
-            // setErrors(errors);
-        .then(res => {
-            if (res.errors) {
-                setErrors(res.errors);
-            
+          if (errors.length && errors) {
+            setErrors(errors);
         } else {
                 console.log('Course created');
                 history.push('/');    
