@@ -70,7 +70,8 @@ export default function CourseDetail() {
         <main>
             <div className="actions--bar">
                 <div className="wrap">
-                {(authUser && authUser.id === course.user.id) 
+                {(authUser && authUser.id === course.userId) 
+
                                     ?
                     (<React.Fragment>
                         <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
