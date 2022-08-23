@@ -70,8 +70,9 @@ export default function CourseDetail() {
         <main>
             <div className="actions--bar">
                 <div className="wrap">
-                {/* {(authUser && authUser.id === course.userId)  */}
-                    {(1>0) 
+                {/* {(1>0)  */}
+                {(authUser && authUser.id === course.userId) 
+                    
 
                                     ?
                     (<React.Fragment>
