@@ -64,13 +64,17 @@ export default function CourseDetail() {
     }
 
     // console.log(course.user.firstName);
+// console.log(authUser);
+// console.log(authUser.id);
+// console.log(course.user);
+
 
     //course-detail.html
     return (
         <main>
             <div className="actions--bar">
                 <div className="wrap">
-                {(authUser && authUser.id === course.user.id) 
+                {(authUser && authUser.id === course.userId) 
                                     ?
                     (<React.Fragment>
                         <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
