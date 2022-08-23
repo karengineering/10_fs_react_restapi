@@ -70,15 +70,12 @@ export default function CourseDetail() {
         <main>
             <div className="actions--bar">
                 <div className="wrap">
-                {/* {(authUser && authUser.id === course.userId)  */}
-
-                {(1>0) 
-                    
-
+                {(authUser && authUser.id === course.user.id) 
                                     ?
                     (<React.Fragment>
                         <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
-                        <Link className="button" to="button" onClick={(delCourse)}>Delete Course</Link>
+                        {/* <Link className="button" to="button" onClick={(delCourse)}>Delete Course</Link> */}
+                        <button className="button" onClick={(delCourse)}>Delete Course</button>
                         <Link className="button button-secondary" to="/">Return to List</Link>
                     </React.Fragment>
                     ):
