@@ -13,7 +13,7 @@ export default function Courses() {
     const [ courses, setCourses ] = useState([]); 
 
     useEffect(() => {
-        console.log('useEffect called');
+        // console.log('useEffect called');
         axios.get('http://localhost:5000/api/courses')
             .then(courses => {
                 setCourses(courses.data)
